@@ -1,12 +1,16 @@
+using Serilog;
 using Ca_Bank_Api.Data;
 using Ca_Bank_Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configure Serilog to log to a file
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
-builder.Logging.ClearProviders();  // Clear default providers
-builder.Logging.AddConsole();  // Log to console
-builder.Logging.AddDebug();    // Log to Debug window
+// Use Serilog as the logging provider
+builder.Host.UseSerilog();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -35,6 +39,8 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<EmailService>();
 
 var app = builder.Build();
+
+app.UseSerilogRequestLogging(); // Middleware to log HTTP requests
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
