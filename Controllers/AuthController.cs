@@ -57,7 +57,8 @@ public class AuthController : ControllerBase
         if (string.IsNullOrWhiteSpace(userData.Email) ||
             string.IsNullOrWhiteSpace(userData.Password) ||
             string.IsNullOrWhiteSpace(userData.PasswordConfirmation) ||
-            string.IsNullOrWhiteSpace(userData.UserName))
+            string.IsNullOrWhiteSpace(userData.FirstName) ||
+            string.IsNullOrWhiteSpace(userData.LastName))
         {
             return BadRequest(new { message = "All fields are required." });
         }
