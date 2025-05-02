@@ -1,10 +1,4 @@
-the-jossie: generate a readme for this application
 
-GitHub Copilot: Copilot took too long to get ready. Please try again.
-
-the-jossie: generate readme for this application
-
-Workspace: Collecting workspace information```markdown
 # CA Bank API
 
 CA Bank API is a backend application built with C# and ASP.NET Core. It provides APIs for user authentication, authorization, and other banking-related functionalities.
